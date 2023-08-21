@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Local Dashboard</title>
+  </head>
+  <body>
+    <h1>Local Dashboard</h1>
+    <p>Temperature: <span id="temperature">0</span> &#8451;</p>
+    <p>Humidity: <span id="humidity">0</span>%</p>
+    <p>Pressure: <span id="pressure">0</span> hPa</p>
+    <script>
+      const eventSource = new EventSource('/stream');
+
+      eventSource.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        document.getElementById('temperature').textContent = data.temperature;
+        document.getElementById('humidity').textContent = data.humidity;
+        document.getElementById('pressure').textContent = data.pressure;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+In line following robots, masking is used to identify and track the path or line that the robot needs to follow. The line is usually a contrasting color or has a specific pattern, making it distinguishable from the surrounding environment. Here are the main uses of masking in line following robots:
+
+1. **Line Detection:**
+   - Masking is used to extract only the pixels corresponding to the color or pattern of the line from the camera's input image. By applying an appropriate mask, the robot can focus on processing only the relevant information related to the line.
+
+2. **Noise Reduction:**
+   - The mask can help filter out noise and unwanted elements in the image that might interfere with the line detection process. By applying a mask, the robot can exclude irrelevant regions, improving the accuracy of the line-following algorithm.
+
+3. **Image Thresholding:**
+   - After masking, the image is often converted to a binary image using thresholding. Thresholding converts the grayscale or color image to a binary image, making it easier to detect the line as a set of white or black pixels against a black or white background.
+
+4. **Contour Extraction:**
+   - Once the line is detected in the binary image, the robot can use contour extraction techniques to obtain the coordinates of the line. These coordinates are then used to determine the line's orientation and guide the robot's movement.
+
+5. **PID Control:**
+   - A Proportional-Integral-Derivative (PID) control algorithm is commonly used to control the robot's motion and keep it aligned with the line. The error between the robot's position and the desired path (the line) is calculated using the line's coordinates obtained from the mask. The PID controller adjusts the robot's steering to minimize this error and follow the line accurately.
+
+6. **Path Planning and Decision Making:**
+   - The robot can use the information from the mask to make decisions about its path, such as turning left or right when encountering intersections or curves in the line.
+
+7. **Adaptive Line Following:**
+   - Advanced line-following robots might use adaptive techniques that adjust the mask and parameters based on environmental conditions. For example, the robot could adjust the mask's color range or pattern detection based on lighting changes or different line designs.
+
+By using masking and computer vision techniques, line following robots can effectively navigate along a specific path, making them suitable for tasks like automated guided vehicles (AGVs) in factories, line-following competitions, and other applications where precise path following is essential.

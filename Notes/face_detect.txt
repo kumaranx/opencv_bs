@@ -1,0 +1,36 @@
+Classifier is an algorithm used to detect the face from a image. It needs to be trained with >1000's of images.
+Two most popular classifiers are Haar Cascades & Local Binary Patterns(more adv than haar)
+
+Url to get opencv Haar Cascades
+https://github.com/opencv/opencv/tree/master/data/haarcascades
+
+Haar Cascade do want the img to be grayscale
+
+1. `haar_cascade = cv.CascadeClassifier("haar_face.xml")`: This line creates a Haar Cascade classifier object by loading a pre-trained XML file named "haar_face.xml." The XML file contains the trained data to recognize faces using the Haar-like features.
+
+2. `faces_rect = haar_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=7)`: The `detectMultiScale` function is used to detect objects (in this case, faces) in the input image. It takes several parameters:
+   - `gray`: This is the grayscale version of the input image. Haar cascades typically work on grayscale images for efficiency.
+   - `scaleFactor`: This parameter determines how much the image size is reduced at each image scale. A smaller value will increase the detection time but can increase the chance of detecting smaller faces.
+   - `minNeighbors`: This parameter specifies how many neighbors each candidate rectangle should have to retain it. Increasing this value will decrease the number of false positives but may miss some faces.
+
+3. `print(f"No of faces found = {len(faces_rect)}")`: This line prints the number of faces detected in the image. `faces_rect` contains a list of rectangles, each representing the detected face's position.
+
+4. `for x, y, w, h in faces_rect:`: This line loops through each detected face's rectangle coordinates.
+
+5. `cv.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), thickness=2)`: This line draws a green rectangle around each detected face in the original image (`img`). The `cv.rectangle` function takes the following parameters:
+   - `img`: The original image on which to draw the rectangle.
+   - `(x, y)`: The top-left corner of the rectangle.
+   - `(x + w, y + h)`: The bottom-right corner of the rectangle.
+   - `(0, 255, 0)`: The color of the rectangle in BGR format (green in this case).
+   - `thickness=2`: The thickness of the rectangle's lines.
+
+## ret ->
+In the context of OpenCV's `cv.VideoCapture`, the `ret` variable stands for "return." It is a Boolean value that indicates whether the `cap.read()` method successfully read a frame from the video or not.
+
+The `cv.VideoCapture.read()` method reads a frame from the video file, and it returns two values: `ret` and `frame`.
+
+- `ret`: This variable is a Boolean value (`True` or `False`). It will be `True` if a frame was successfully read, and it will be `False` if there are no more frames to read (i.e., the end of the video is reached).
+- `frame`: This variable contains the actual frame that was read from the video. It is an image represented as a NumPy array.
+
+The typical usage of the `ret` variable is to check whether a frame was successfully read before processing it. If `ret` is `True`, it means there is a valid frame, and you can process it. If `ret` is `False`, it means there are no more frames to read, and you can break out of the loop or perform any other necessary actions, such as releasing the video capture.
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coordinates Dashboard</title>
+  </head>
+  <body>
+    <h1>Coordinates Dashboard</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480" />
+    <h2>Coordinates: <span id="coordinates"></span></h2>
+    <h2>Direction: <span id="direction"></span></h2>
+
+    <script type="text/javascript">
+      const coordinatesElement = document.getElementById('coordinates');
+      const directionElement = document.getElementById('direction');
+      const eventSource = new EventSource('/video_feed');
+
+      eventSource.onmessage = (event) => {
+        const [coordinates, direction] = event.data.split('\r\n');
+        coordinatesElement.textContent = coordinates;
+        directionElement.textContent = direction;
+      };
+    </script>
+  </body>
+</html>
